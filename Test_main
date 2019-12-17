@@ -97,8 +97,22 @@ class AdminManage:
         self.window2.geometry('800x600')
         self.window2.title('选课系统-管理员操作界面-学生管理')
         #Here Create buttons and entries
+        Label(self.window2, text='学号').pack(side=LEFT)
+        self.msg1 = Entry(self.window2).pack(side=RIGHT)
+        Label(self.window2, text='姓名').pack(side=LEFT)
+        self.msg2 = Entry(self.window2).pack(side=RIGHT)
+        Label(self.window2, text='性别').pack(side=LEFT)
+        self.msg3 = Entry(self.window2).pack(side=RIGHT)
+        Label(self.window2, text='籍贯').pack(side=LEFT)
+        self.msg4 = Entry(self.window2).pack(side=RIGHT)
+        Button(self.window2, text='增加', fg='white', activebackground='red', bg='gray',
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack()
+        Button(self.window2, text='删除', fg='white', activebackground='red', bg='gray',
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack()
+        Label(self.window2)
         Button(self.window2, text='ReManagePage', fg='white', activebackground='red', bg='gray',
-               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack(pady=100)
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack()
+    #def admin_add(self,table,addordel):
 
     def admin_tea(self, ad_id):
         self.window.destroy()
