@@ -14,14 +14,15 @@ class Startpage:
         self.window.title('选课系统')
         self.window.geometry('800x600')
         Label(self.window, text='选课系统', width=50, height=3, font=28).pack(pady=100)
-        Button(self.window, text='For Admin', font=24, fg='white', activebackground='red', bg='gray', width=30,
-               height=3, command=lambda: Adminpage(self.window)).pack()
         Button(self.window, text='For Students in FDU', fg='white', activebackground='red', bg='gray', width=30,
                height=3, font=24, command=lambda: Stupage(self.window)).pack()
         Button(self.window, text='For Teachers in FDU', fg='white', activebackground='red', activeforeground='white',
                bg='gray', width=30, height=3, font=24, command=lambda: Teacherpage(self.window)).pack()
         Button(self.window, text='Visitor', font=24, fg='white', activebackground='red', bg='gray', width=30, height=3,
                command=lambda: Vistorpage(self.window)).pack()
+        Button(self.window, text='For Admin', font=24, fg='white', activebackground='red', bg='gray', width=30,
+               height=3, command=lambda: Adminpage(self.window)).pack()
+        Label(self.window, text='Author', width=50, height=3, font=28).pack()
         self.window.mainloop()
 
 
@@ -187,7 +188,7 @@ class Teacherpage:
         self.window = tk.Tk()
         self.window.title('选课系统-教师界面')
         self.window.geometry('800x600')
-        Label(self.window, text='教师号登陆', font=24).pack(pady=100)
+        Label(self.window, text='教师登陆', font=24).pack(pady=100)
         Label(self.window, text='教师登陆账号', font=18).pack()
         self.admin_id = Entry(self.window).pack()
         Label(self.window, text='教师登陆密码', font=18).pack()
