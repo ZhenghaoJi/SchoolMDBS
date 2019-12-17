@@ -81,27 +81,42 @@ class AdminManage:
         self.window.geometry('800x600')
         Label(self.window, text='管理员可执行操作', font=24).pack(pady=100)
         Button(self.window, text='学生管理', fg='white', activebackground='red', bg='gray', width=30,
-               height=3, font=24, command=lambda: self.admin_consult()).pack()
+               height=3, font=24, command=lambda: self.admin_stu(ad_id)).pack()
         Button(self.window, text='教师管理', fg='white', activebackground='red', bg='gray', width=30,
-               height=3, font=24, command=lambda: self.admin_add()).pack()
+               height=3, font=24, command=lambda: self.admin_tea(ad_id)).pack()
         Button(self.window, text='成绩登陆', fg='white', activebackground='red', bg='gray', width=30,
-               height=3, font=24, command=lambda: self.admin_delete()).pack()
+               height=3, font=24, command=lambda: self.admin_score(ad_id)).pack()
         # backpage
         Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
                command=lambda: Startpage(self.window)).pack()
         self.window.mainloop()
 
-        def admin_consult(self):
-            Button(self.window, text='ReManagePage', fg='white', activebackground='red', bg='gray',
-                   command=lambda: AdminManage(self.window, ad_id=ad_id)).pack(pady=100)
+    def admin_stu(self, ad_id):
+        self.window.destroy()
+        self.window2 = tk.Tk()
+        self.window2.geometry('800x600')
+        self.window2.title('选课系统-管理员操作界面-学生管理')
+        #Here Create buttons and entries
+        Button(self.window2, text='ReManagePage', fg='white', activebackground='red', bg='gray',
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack(pady=100)
 
-        def admin_add(self):
-            Button(self.window, text='ReManagePage', fg='white', activebackground='red', bg='gray',
-                   command=lambda: AdminManage(self.window, ad_id=ad_id)).pack(pady=100)
+    def admin_tea(self, ad_id):
+        self.window.destroy()
+        self.window2 = tk.Tk()
+        self.window2.geometry('800x600')
+        self.window2.title('选课系统-管理员操作界面-教师管理')
+        #Here Create buttons and entries
+        Button(self.window2, text='ReManagePage', fg='white', activebackground='red', bg='gray',
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack(pady=100)
 
-        def admin_delete(self):
-            Button(self.window, text='ReManagePage', fg='white', activebackground='red', bg='gray',
-                   command=lambda: AdminManage(self.window, ad_id=ad_id)).pack(pady=100)
+    def admin_score(self, ad_id):
+        self.window.destroy()
+        self.window2 = tk.Tk()
+        self.window2.geometry('800x600')
+        self.window2.title('选课系统-管理员操作界面-成绩登陆')
+        #Here Create buttons and entries
+        Button(self.window2, text='ReManagePage', fg='white', activebackground='red', bg='gray',
+               command=lambda: AdminManage(self.window2, ad_id=ad_id)).pack(pady=100)
 
 
 class Stupage:
