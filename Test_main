@@ -1,0 +1,132 @@
+import pymysql
+from tkinter import ttk
+from tkinter import *
+import tkinter as tk
+
+
+# database = pymysql.connect('localhost', 'root', 'jzh990828', charset='utf8', port='3306')
+
+
+class Startpage:
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统')
+        self.window.geometry('800x600')
+        Label(self.window, text='选课系统', width=50, height=3, font=28).pack(pady=100)
+        Button(self.window, text='For Admin', font=24, fg='white', activebackground='red', bg='gray', width=30,
+               height=3, command=lambda: Adminpage(self.window)).pack()
+        Button(self.window, text='For Students in FDU', fg='white', activebackground='red', bg='gray', width=30,
+               height=3, font=24, command=lambda: Stupage(self.window)).pack()
+        Button(self.window, text='For Teachers in FDU', fg='white', activebackground='red', activeforeground='white',
+               bg='gray', width=30, height=3, font=24, command=lambda: Teacherpage(self.window)).pack()
+        Button(self.window, text='Visitor', font=24, fg='white', activebackground='red', bg='gray', width=30, height=3,
+               command=lambda: Vistorpage(self.window)).pack()
+        self.window.mainloop()
+
+
+class Adminpage:
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统-管理员界面')
+        self.window.geometry('800x600')
+        Label(self.window, text='管理员登陆', font=24).pack(pady=100)
+        Label(self.window, text='管理员登陆账号', font=18).pack()
+        self.admin_id = Entry(self.window).pack()
+        Label(self.window, text='管理员登陆密码', font=18).pack()
+        self.admin_pw = Entry(self.window).pack()
+        Button(self.window, text='Sign in', font=24, command=lambda: self.login_admin()).pack()
+
+        Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
+               command=lambda: Startpage(self.window)).pack(pady=100)
+
+        self.window.mainloop()
+
+    def login_admin(self):
+    # back to adminpage or go to admin manage page
+        database = pymysql.connect('localhost', 'root', '', charset='utf8', port=3306)
+        cursor = database.cursor()
+        sql = "select * from admin_login where adminid='%s',adminpw='%s'" % (self.admin_id.get()) % (
+        self.admin_pw.get())
+        cursor.execute(sql)
+
+
+class AdminManage:
+    # we have signed in.
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统-管理员操作界面')
+        self.window.geometry('800x600')
+        Label(self.window, text='管理员可执行操作', font=24).pack(pady=100)
+        Button(self.window, text='查询', fg='white', activebackground='red', bg='gray', width=30,
+               height=3, font=24, command=lambda: self.admin_consult()).pack()
+        Button(self.window, text='增加', fg='white', activebackground='red', bg='gray', width=30,
+               height=3, font=24, command=lambda: self.admin_add()).pack()
+        Button(self.window, text='删除', fg='white', activebackground='red', bg='gray', width=30,
+               height=3, font=24, command=lambda: self.admin_delete()).pack()
+        # backpage
+        Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
+               command=lambda: Startpage(self.window)).pack(pady=100)
+        self.window.mainloop()
+        def admin_consult(self):
+
+        def admin_add(self):
+
+        def admin_delete(self):
+
+
+class Stupage:
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统-学生界面')
+        self.window.geometry('800x600')
+        Label(self.window, text='学生登陆', font=24).pack(pady=100)
+        Label(self.window, text='学号', font=18).pack()
+        self.admin_id = Entry(self.window).pack()
+        Label(self.window, text='密码', font=18).pack()
+        self.admin_pw = Entry(self.window).pack()
+        Button(self.window, text='Sign in', font=24, command=lambda: self.login_admin()).pack()
+
+        Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
+               command=lambda: Startpage(self.window)).pack(pady=100)
+
+        self.window.mainloop()
+
+
+class Teacherpage:
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统-教师界面')
+        self.window.geometry('800x600')
+        Label(self.window, text='教师号登陆', font=24).pack(pady=100)
+        Label(self.window, text='教师登陆账号', font=18).pack()
+        self.admin_id = Entry(self.window).pack()
+        Label(self.window, text='教师登陆密码', font=18).pack()
+        self.admin_pw = Entry(self.window).pack()
+        Button(self.window, text='Sign in', font=24, command=lambda: self.login_admin()).pack()
+
+        Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
+               command=lambda: Startpage(self.window)).pack(pady=100)
+
+        self.window.mainloop()
+
+
+class Vistorpage:
+    def __init__(self, parent_window):
+        parent_window.destroy()
+        self.window = tk.Tk()
+        self.window.title('选课系统-游客界面')
+        self.window.geometry('800x600')
+        Button(self.window, text='ReStart', fg='white', activebackground='red', bg='gray',
+               command=lambda: Startpage(self.window)).pack(pady=100)
+
+        self.window.mainloop()
+
+
+if __name__ == '__main__':
+    window = tk.Tk()
+    Startpage(window)
